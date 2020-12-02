@@ -9,9 +9,9 @@
     font-weight: normal;
     font-style: normal;
     text-rendering: optimizeLegibility;
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: 'Formular';
     src: url('https://miro.com/static/font/formular/formular-bold.eot');
     src: url('https://miro.com/static/font/formular/formular-bold.eot?#iefix') format('embedded-opentype'),
@@ -22,9 +22,9 @@
     font-weight: bold;
     font-style: normal;
     text-rendering: optimizeLegibility;
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: 'Formular';
     src: url('https://miro.com/static/font/formular/formular-medium.eot');
     src: url('https://miro.com/static/font/formular/formular-medium.eot?#iefix') format('embedded-opentype'),
@@ -35,9 +35,9 @@
     font-weight: 500;
     font-style: normal;
     text-rendering: optimizeLegibility;
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: 'Formular';
     src: url('https://miro.com/static/font/formular/formular-light.eot');
     src: url('https://miro.com/static/font/formular/formular-light.eot?#iefix') format('embedded-opentype'),
@@ -48,9 +48,9 @@
     font-weight: 300;
     font-style: normal;
     text-rendering: optimizeLegibility;
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: 'Spoof';
     src: url('https://miro.com/static/font/spoof/spoof-regular.eot');
     src: url('https://miro.com/static/font/spoof/spoof-regular.eot?#iefix') format('embedded-opentype'),
@@ -59,9 +59,9 @@
     font-weight: normal;
     font-style: normal;
     text-rendering: optimizeLegibility;
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: 'Spoof';
     src: url('https://miro.com/static/font/spoof/spoof-bold.eot');
     src: url('https://miro.com/static/font/spoof/spoof-bold.eot?#iefix') format('embedded-opentype'),
@@ -70,9 +70,9 @@
     font-weight: bold;
     font-style: normal;
     text-rendering: optimizeLegibility;
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: 'Spoof';
     src: url('https://miro.com/static/font/spoof/spoof-medium.eot');
     src: url('https://miro.com/static/font/spoof/spoof-medium.eot?#iefix') format('embedded-opentype'),
@@ -81,7 +81,7 @@
     font-weight: 500;
     font-style: normal;
     text-rendering: optimizeLegibility;
-  }
+}
 
 .container {
     position: relative;
