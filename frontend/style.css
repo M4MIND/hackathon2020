@@ -10,7 +10,7 @@
     font-style: normal;
     text-rendering: optimizeLegibility;
   }
-  
+
   @font-face {
     font-family: 'Formular';
     src: url('https://miro.com/static/font/formular/formular-bold.eot');
@@ -23,7 +23,7 @@
     font-style: normal;
     text-rendering: optimizeLegibility;
   }
-  
+
   @font-face {
     font-family: 'Formular';
     src: url('https://miro.com/static/font/formular/formular-medium.eot');
@@ -36,7 +36,7 @@
     font-style: normal;
     text-rendering: optimizeLegibility;
   }
-  
+
   @font-face {
     font-family: 'Formular';
     src: url('https://miro.com/static/font/formular/formular-light.eot');
@@ -49,7 +49,7 @@
     font-style: normal;
     text-rendering: optimizeLegibility;
   }
-  
+
   @font-face {
     font-family: 'Spoof';
     src: url('https://miro.com/static/font/spoof/spoof-regular.eot');
@@ -60,7 +60,7 @@
     font-style: normal;
     text-rendering: optimizeLegibility;
   }
-  
+
   @font-face {
     font-family: 'Spoof';
     src: url('https://miro.com/static/font/spoof/spoof-bold.eot');
@@ -71,7 +71,7 @@
     font-style: normal;
     text-rendering: optimizeLegibility;
   }
-  
+
   @font-face {
     font-family: 'Spoof';
     src: url('https://miro.com/static/font/spoof/spoof-medium.eot');
@@ -105,6 +105,7 @@
 .container-column img {
     width: 550px;
     height: auto;
+    border-radius: 80px;
 }
 
 .location {
