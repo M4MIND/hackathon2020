@@ -22,7 +22,7 @@ function error(res, msg) {
 		}
 		const buf = await page.screenshot({
 			encoding: "binary",
-			type: "png",
+			type: "jpeg",
 		})
 		await page.close()
 
