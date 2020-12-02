@@ -1,0 +1,140 @@
+@font-face {
+    font-family: 'Formular';
+    src: url('https://miro.com/static/font/formular/formular-regular.eot');
+    src: url('https://miro.com/static/font/formular/formular-regular.eot?#iefix') format('embedded-opentype'),
+    url('https://miro.com/static/font/formular/formular-regular.woff2') format('woff2'),
+    url('https://miro.com/static/font/formular/formular-regular.woff') format('woff'),
+    url('https://miro.com/static/font/formular/formular-regular.ttf') format('truetype'),
+    url('https://miro.com/static/font/formular/formular-regular.svg#Formular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Formular';
+    src: url('https://miro.com/static/font/formular/formular-bold.eot');
+    src: url('https://miro.com/static/font/formular/formular-bold.eot?#iefix') format('embedded-opentype'),
+    url('https://miro.com/static/font/formular/formular-bold.woff2') format('woff2'),
+    url('https://miro.com/static/font/formular/formular-bold.woff') format('woff'),
+    url('https://miro.com/static/font/formular/formular-bold.ttf') format('truetype'),
+    url('https://miro.com/static/font/formular/formular-bold.svg#Formular-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Formular';
+    src: url('https://miro.com/static/font/formular/formular-medium.eot');
+    src: url('https://miro.com/static/font/formular/formular-medium.eot?#iefix') format('embedded-opentype'),
+    url('https://miro.com/static/font/formular/formular-medium.woff2') format('woff2'),
+    url('https://miro.com/static/font/formular/formular-medium.woff') format('woff'),
+    url('https://miro.com/static/font/formular/formular-medium.ttf') format('truetype'),
+    url('https://miro.com/static/font/formular/formular-medium.svg#Formular-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Formular';
+    src: url('https://miro.com/static/font/formular/formular-light.eot');
+    src: url('https://miro.com/static/font/formular/formular-light.eot?#iefix') format('embedded-opentype'),
+    url('https://miro.com/static/font/formular/formular-light.woff2') format('woff2'),
+    url('https://miro.com/static/font/formular/formular-light.woff') format('woff'),
+    url('https://miro.com/static/font/formular/formular-light.ttf') format('truetype'),
+    url('https://miro.com/static/font/formular/formular-light.svg#Formular-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Spoof';
+    src: url('https://miro.com/static/font/spoof/spoof-regular.eot');
+    src: url('https://miro.com/static/font/spoof/spoof-regular.eot?#iefix') format('embedded-opentype'),
+    url('https://miro.com/static/font/spoof/spoof-regular.woff2') format('woff2'),
+    url('https://miro.com/static/font/spoof/spoof-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Spoof';
+    src: url('https://miro.com/static/font/spoof/spoof-bold.eot');
+    src: url('https://miro.com/static/font/spoof/spoof-bold.eot?#iefix') format('embedded-opentype'),
+    url('https://miro.com/static/font/spoof/spoof-bold.woff2') format('woff2'),
+    url('https://miro.com/static/font/spoof/spoof-bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Spoof';
+    src: url('https://miro.com/static/font/spoof/spoof-medium.eot');
+    src: url('https://miro.com/static/font/spoof/spoof-medium.eot?#iefix') format('embedded-opentype'),
+    url('https://miro.com/static/font/spoof/spoof-medium.woff2') format('woff2'),
+    url('https://miro.com/static/font/spoof/spoof-medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    width: 1200px;
+    height: 630px;
+    margin: 100px auto;
+    padding: 40px;
+    color: #050038;
+}
+
+.container-column {
+    width: 50%;
+}
+
+.container-column:last-child {
+    text-align: right;
+}
+
+.container-column img {
+    width: 550px;
+    height: auto;
+    border-radius: 80px;
+}
+
+.location {
+    font-family: "Formular", Helvetica, Arial, serif;
+    font-weight: normal;
+    font-feature-settings: 'ss03' on;
+    max-width: 230px;
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 16px;
+}
+
+.job-title {
+    font-family: "Spoof", Helvetica, Arial, serif;
+    font-weight: bold;
+    font-feature-settings: 'zero' on, 'ss05' on, 'ss02' on;
+    max-width: 400px;
+    font-size: 64px;
+    line-height: 68px;
+    letter-spacing: -1px;
+}
+
+.logo-container {
+    position: absolute;
+    width: 88px;
+    left: 40px;
+    bottom: 40px;
+}
+
+.logo-container img {
+    width: 100%;
+}
