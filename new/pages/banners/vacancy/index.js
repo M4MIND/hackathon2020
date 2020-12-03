@@ -14,7 +14,9 @@ const CardsList = (props) => {
 				</div>
 			</div>
 			<div className="container-column">
-				<img src={`/banners/vacancy/${image}`} />
+				<div className="sharing-image-container" style={{backgroundImage: `url(/banners/vacancy/${image})`}}>
+
+				</div>
 			</div>
 
 			<div className="logo-container">

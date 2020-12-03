@@ -107,10 +107,14 @@
     text-align: right;
 }
 
-.container-column img {
+.container-column .sharing-image-container {
     width: 550px;
-    height: auto;
-    border-radius: 80px;
+    height: 550px;
+    /*border-radius: 80px;*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    object-fit: cover;
 }
 
 .location {
