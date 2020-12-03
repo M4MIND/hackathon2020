@@ -1,7 +1,7 @@
-import glob from "glob";
-import hasher from "object-hash";
+const glob = require("glob");
+const crypto = require("crypto");
 
-export class PhotoPicker {
+class PhotoPicker {
 	constructor(photoMask) {
 		if (0 === (photoMask || "").length) {
 			throw new Error(`mask can't be empty`);
@@ -10,13 +10,13 @@ export class PhotoPicker {
 		this.photoMask = photoMask
 	}
 
-	async pick({title, desc, team, position}) {
+	async pick(query) {
 		const photosFiles = await this.getPhotosFiles(this.photoMask);
 		if (0 === (photosFiles || []).length) {
 			throw new Error(`no photos files found`);
 		}
 
-		const photoNumber = this.getPhotoNumber(photosFiles.length, {title, desc, team, position});
+		const photoNumber = this.getPhotoNumber(photosFiles.length, query);
 
 		return photosFiles[photoNumber];
 	}
@@ -45,10 +45,12 @@ export class PhotoPicker {
 		});
 	}
 
-	getPhotoNumber(photosCount, {title, desc, team, position}) {
-		const hash = hasher.sha1({title, desc, team, position});
+	getPhotoNumber(photosCount, key) {
+		return this.calcHash2Number(this.getHash(key), photosCount);
+	}
 
-		return this.calcHash2Number(hash, photosCount);
+	getHash(key) {
+		return crypto.createHash('sha256').update(key).digest('hex')
 	}
 
 	calcHash2Number(hash = "", photosCount = 1) {
@@ -67,3 +69,5 @@ export class PhotoPicker {
 		return num % photosCount;
 	}
 }
+
+module.exports = {PhotoPicker};
