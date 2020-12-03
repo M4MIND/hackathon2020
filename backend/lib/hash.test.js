@@ -1,7 +1,7 @@
 jest.mock("glob");
 import glob from "glob";
-const {PhotoPicker} = require("./hash");
 
+const {PhotoPicker} = require("./hash");
 
 describe("search for files by mask", () => {
 	test("files exist", async () => {
@@ -41,3 +41,43 @@ describe("search for files by mask", () => {
 	});
 });
 
+describe("calculate number from hash", () => {
+	const cases = [
+		["1e223fc77f8dc2ad48f14af26dff90a5bc80ff1a", 12, 4],
+		["828686c78a548fdc2b1f0f1a4ca08090919272cf", 17, 11],
+		["fefb19ca5ab343aa0e1903e7b3a1ba78f9f382e9", 11, 7],
+	];
+
+	const pp = new PhotoPicker("/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph*.jpg");
+	test.each(cases)(
+		`hash %p photosCount "%p" => %p`,
+		(hash, photosCount, photoNumber) => {
+			expect(pp.calcHash2Number(hash, photosCount)).toEqual(photoNumber);
+		}
+	);
+
+	test("hash is empty", async () => {
+		const pp = new PhotoPicker("/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph*.jpg");
+		expect(() => {
+			pp.calcHash2Number("", 1);
+		}).toThrow(`hash can't be empty`);
+	});
+
+	test("photo count is 0", async () => {
+		const pp = new PhotoPicker("/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph*.jpg");
+		expect(() => {
+			pp.calcHash2Number("aa", 0);
+		}).toThrow(`photos count can't be empty`);
+	});
+	test("photo count is null", async () => {
+		const pp = new PhotoPicker("/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph*.jpg");
+		expect(() => {
+			pp.calcHash2Number("aa", null);
+		}).toThrow(`photos count can't be empty`);
+	});
+	test("photo count is undefined", async () => {
+		const pp = new PhotoPicker("/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph*.jpg");
+		let actual = pp.calcHash2Number("aa", undefined);
+		expect(actual).toEqual(0);
+	});
+});
