@@ -83,13 +83,17 @@
     text-rendering: optimizeLegibility;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .container {
     position: relative;
     display: flex;
     box-sizing: border-box;
     width: 1200px;
     height: 630px;
-    margin: 100px auto;
     padding: 40px;
     color: #050038;
 }
