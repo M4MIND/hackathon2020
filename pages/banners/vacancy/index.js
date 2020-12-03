@@ -28,11 +28,7 @@ const CardsList = (props) => {
 };
 
 export async function getServerSideProps(ctx) {
-	const team = ctx.query.team || 'null';
-	const photoDir = path.resolve(process.cwd(), 'public', 'banners', 'vacancy', team);
-	const photoPicker = new PhotoPicker(`${photoDir}/*.png`);
-
-	const photo = await photoPicker.pick(querystring.stringify(ctx.query));
+	const photo = await (await fetch(`http://localhost:3000/api/get-photo?${querystring.stringify(ctx.query)}`)).json();
 
 	return {
 		props: {
@@ -40,7 +36,7 @@ export async function getServerSideProps(ctx) {
 			job: ctx.query.job || 'job',
 			bg: ctx.query.bg || 'FDF1C6',
 			team: ctx.query.team || 'team',
-			photo: photo || 'photo'
+			photo: photo.photo || '1.png'
 		}
 	};
 }

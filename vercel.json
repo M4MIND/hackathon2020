@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/get-photo.js": {
+      "includeFiles": "public/**"
+    }
+  }
+}
