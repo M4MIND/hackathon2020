@@ -121,3 +121,24 @@ describe("pick photo", () => {
 		}).rejects.toEqual(new Error(`no photos files found`));
 	})
 });
+
+describe("photo picker", () => {
+	test("mask ok", async () => {
+		const pp = new PhotoPicker("/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph*.jpg");
+		expect(pp.photoMask).toEqual("/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph*.jpg");
+	})
+
+	const cases = [
+		["empty string", ""],
+		["null", null],
+		["undefined", undefined],
+	];
+	test.each(cases)(
+		`mask is %p`,
+		async (maskTitle, mask) => {
+			await expect(async () => {
+				const pp = new PhotoPicker("");
+			}).rejects.toEqual(new Error(`mask can't be empty`));
+		},
+	);
+});
