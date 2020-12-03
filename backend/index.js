@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const express = require('express');
 const path = require('path');
+const querystring = require('querystring');
 const {TwingEnvironment, TwingLoaderFilesystem} = require('twing');
 const loader = new TwingLoaderFilesystem(path.join(__dirname, '..', 'frontend'));
 const twing = new TwingEnvironment(loader);
@@ -15,8 +16,13 @@ function error(res, msg) {
 (async () => {
 	const browser = await puppeteer.launch();
 	app.get('/api/make-preview', async (req, res) => {
+		if (typeof req.query.template === "undefined") {
+			return error(res, `no template given`)
+		}
+
 		const page = await browser.newPage();
-		const opened = await page.goto('http://ya.ru'); // TODO: replace with /api/renderer/
+		let queryStr = querystring.stringify(req.query);
+		const opened = await page.goto(`/banners/${req.query.template}?${queryStr}`);
 		if (399 < opened.status()) {
 			return error(res, "can't load page");
 		}
@@ -26,7 +32,7 @@ function error(res, msg) {
 		})
 		await page.close()
 
-		return res.set("Content-Type", "image/png").send(buf);
+		return res.set("Content-Type", "image/jpeg").send(buf);
 	});
 
 	app.get('/api/renderer', (req, res) => {
