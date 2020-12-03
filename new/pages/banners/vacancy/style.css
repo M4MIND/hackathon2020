@@ -110,11 +110,10 @@
 .container-column .sharing-image-container {
     width: 550px;
     height: 550px;
-    /*border-radius: 80px;*/
+    border-radius: 80px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
-    object-fit: cover;
+    background-size: cover;
 }
 
 .location {
