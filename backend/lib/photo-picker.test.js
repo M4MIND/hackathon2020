@@ -1,3 +1,7 @@
+const path = require("path");
+const fs = require("fs");
+const readline = require("readline");
+
 jest.mock("glob");
 const glob = require("glob");
 const querystring = require('querystring');
@@ -135,9 +139,9 @@ describe("photo picker", () => {
 	];
 	test.each(cases)(
 		`mask is %p`,
-		async (maskTitle, mask) => {
+		async () => {
 			await expect(async () => {
-				const pp = new PhotoPicker("");
+				new PhotoPicker("");
 			}).rejects.toEqual(new Error(`mask can't be empty`));
 		},
 	);
@@ -158,4 +162,41 @@ describe("calculate hash", () => {
 			expect(pp.getHash(str)).toEqual(hash);
 		}
 	);
+});
+
+test("verify distribution", async () => {
+	const book = path.resolve(__dirname, '..', "assets", "JohnRonaldReuelTolkien.txt");
+	const fileStream = fs.createReadStream(book);
+	const rl = readline.createInterface({
+		input: fileStream,
+		crlfDelay: Infinity
+	});
+
+	const pp = new PhotoPicker("aa");
+
+	const results = new Map();
+	let line = ""
+	let totalLines = 0;
+	for await (line of rl) {
+		line = line.trim();
+		if (0 === line.length) {
+			continue
+		}
+
+		let hash = pp.getPhotoNumber(20, line);
+		results.set(hash, (results.get(hash) || 0) + 1);
+		totalLines++;
+	}
+
+	// region See https://en.wikipedia.org/wiki/Standard_deviation
+	const avg = totalLines/results.size;
+	let sum = 0;
+	for (var [photo, appearences] of results.entries()) {
+		sum += Math.pow(appearences-avg, 2);
+	}
+	const deviation = Math.sqrt(sum/results.size);
+	const deviationPerc = deviation/avg * 100;
+	// endregion
+
+	expect(deviationPerc).toBeLessThan(7);
 });
