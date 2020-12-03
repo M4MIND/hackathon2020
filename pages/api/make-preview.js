@@ -15,7 +15,7 @@ export default async (req, res) => {
 
     const page = await browser.newPage();
 
-    page.setViewport({
+    await page.setViewport({
         width: req.query.w || 1200,
         height: req.query.h || 630
     })
