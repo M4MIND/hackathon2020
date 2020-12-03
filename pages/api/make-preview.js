@@ -23,8 +23,6 @@ export default async (req, res) => {
     let queryStr = querystring.stringify(req.query);
     const opened = await page.goto(`http://localhost:3000/banners/${req.query.template}?${queryStr}`);
 
-    console.log(`http://localhost:3000/banners/${req.query.template}?${queryStr}`);
-
 
     if (399 < opened.status()) {
         return error(res, "can't load page");
