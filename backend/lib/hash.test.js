@@ -81,3 +81,43 @@ describe("calculate number from hash", () => {
 		expect(actual).toEqual(0);
 	});
 });
+
+describe("pick photo", () => {
+	test("files exist", async () => {
+		jest.spyOn(glob, 'glob').mockImplementation((photosMask, cb) => {
+			return cb(null, [
+				"/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph1.jpg",
+				"/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph14.jpg",
+				"/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph2.jpg",
+				"/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph3.jpg",
+				"/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph5.jpg",
+				"/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph6.jpg",
+			]);
+		});
+
+		const pp = new PhotoPicker("/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph*.jpg");
+		const photoFile = await pp.pick({
+			title: "Go Miro",
+			desc: "Dream job",
+			team: "Developers",
+			position: "Middle",
+		});
+		expect(photoFile).toBe("/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph5.jpg");
+	})
+
+	test("files not exist", async () => {
+		jest.spyOn(glob, 'glob').mockImplementation((photosMask, cb) => {
+			return cb(null, []);
+		});
+
+		const pp = new PhotoPicker("/Users/miju/Work/rtb.hackathon2020/backend/tmp/ph*.jpg");
+		await expect(async () => {
+			await pp.pick({
+				title: "Go Miro",
+				desc: "Dream job",
+				team: "Developers",
+				position: "Middle",
+			});
+		}).rejects.toEqual(new Error(`no photos files found`));
+	})
+});
