@@ -5,7 +5,7 @@ function error(res, msg) {
   return res.status(500).send(msg);
 }
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   const browser = await playwright.chromium.launch();
 
   if (typeof req.query.template === "undefined") {
