@@ -2,7 +2,7 @@ import querystring from "querystring";
 import PhotoPicker from "../../libs/photoPicker/photo-picker";
 import path from "path";
 
-export default async (req, res) => {
+module.exports = (req, res) => {
 	console.log({team: req.query.team, cwd: process.cwd(), req: req.query});
 
 	const photoDir = path.resolve(process.cwd(), 'public', 'banners', 'vacancy', req.query.team);
