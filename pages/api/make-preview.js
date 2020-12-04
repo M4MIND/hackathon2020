@@ -1,4 +1,4 @@
-const playwright = require("playwright");
+const playwright = require("playwright-aws-lambda");
 const querystring = require("querystring");
 
 function error(res, msg) {
@@ -6,7 +6,7 @@ function error(res, msg) {
 }
 
 module.exports = async (req, res) => {
-  const browser = await playwright.chromium.launch();
+  const browser = await playwright.launchChromium();
 
   if (typeof req.query.template === "undefined") {
     return error(res, `no template given`);
