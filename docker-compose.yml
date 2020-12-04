@@ -1,0 +1,13 @@
+version: '2.0'
+
+services:
+  api:
+    container_name: banner-api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    cap_add:
+      - SYS_ADMIN # to run puppeteer
+    restart: unless-stopped
+    ports:
+      - 3000:3000
