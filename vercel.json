@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/get-photo.js": {
+    "pages/api/get-photo.js": {
       "includeFiles": "public/**"
     }
   }
