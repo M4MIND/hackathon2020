@@ -32,11 +32,15 @@ module.exports = async (req, res) => {
   if (399 < opened.status()) {
     return error(res, "can't load page");
   }
-  const buf = await page.screenshot({
-    encoding: "binary",
+  const data = await page.screenshot({
     type: "jpeg",
   });
+
   await page.close();
 
-  return res.send(buf);
+  // Set the s-maxage property which caches the images then on the Vercel edge
+  res.setHeader("Cache-Control", "s-maxage=31536000, stale-while-revalidate");
+  res.setHeader("Content-Type", "image/jpeg");
+  // write the image to the response with the specified Content-Type
+  res.end(data);
 };
