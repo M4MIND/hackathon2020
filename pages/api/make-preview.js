@@ -1,37 +1,42 @@
-const puppeteer = require('puppeteer');
-const querystring = require('querystring');
+const playwright = require("playwright");
+const querystring = require("querystring");
 
 function error(res, msg) {
-    return res.status(500).send(msg)
+  return res.status(500).send(msg);
 }
 
 export default async (req, res) => {
+  const browser = await playwright.chromium.launch();
 
-    const browser = await puppeteer.launch();
+  if (typeof req.query.template === "undefined") {
+    return error(res, `no template given`);
+  }
 
-    if (typeof req.query.template === "undefined") {
-        return error(res, `no template given`)
-    }
+  const page = await browser.newPage();
 
-    const page = await browser.newPage();
+  await page.setViewportSize({
+    width: req.query.w || 1200,
+    height: req.query.h || 630,
+  });
 
-    await page.setViewport({
-        width: req.query.w || 1200,
-        height: req.query.h || 630
-    })
+  let queryStr = querystring.stringify(req.query);
 
-    let queryStr = querystring.stringify(req.query);
-    const opened = await page.goto(`http://localhost:3000/banners/${req.query.template}?${queryStr}`);
+  const hostName =
+    (process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`) ||
+    "http://localhost:3000";
 
+  const opened = await page.goto(
+    `${hostName}/banners/${req.query.template}?${queryStr}`
+  );
 
-    if (399 < opened.status()) {
-        return error(res, "can't load page");
-    }
-    const buf = await page.screenshot({
-        encoding: "binary",
-        type: "jpeg",
-    })
-    await page.close()
+  if (399 < opened.status()) {
+    return error(res, "can't load page");
+  }
+  const buf = await page.screenshot({
+    encoding: "binary",
+    type: "jpeg",
+  });
+  await page.close();
 
-    return res.send(buf);
-}
+  return res.send(buf);
+};
